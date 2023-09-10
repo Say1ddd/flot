@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Inertia\Response;
 
 class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
-        //
+        return Inertia::render('Brands/Index', [
+            'brands' => Brand::with('icon')->get(),
+        ]);
     }
 
     /**
@@ -34,9 +38,15 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Brand $brand)
+    public function show(Brand $brand): Response
     {
-        //
+        $brand->load('icon', 'products.brand', 'images');
+
+        return Inertia::render('Brands/Show', [
+            'brand' => $brand,
+            'products' => $brand->products,
+            'images' => $brand->images,
+        ]);
     }
 
     /**
