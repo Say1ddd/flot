@@ -23,6 +23,7 @@ return new class extends Migration
             $table->id();
             $table->string('icon_path')->unique();
             $table->foreignId('brand_id')
+                ->constrained('brands')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
         });
@@ -31,9 +32,9 @@ return new class extends Migration
             $table->id();
             $table->string('image_path')->unique();
             $table->foreignId('brand_id')
+                ->constrained('brands')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->timestamps();
         });
     }
 

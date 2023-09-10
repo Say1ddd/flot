@@ -15,6 +15,11 @@ class Brand extends Model
 
     protected $fillable = ['title', 'slug', 'description'];
 
+    public function getroutekeyname(): string
+    {
+        return 'slug';
+    }
+
     /**
      * Get the icon associated with the Brand
      *
@@ -33,5 +38,15 @@ class Brand extends Model
     public function images(): HasMany
     {
         return $this->hasMany(BrandImage::class);
+    }
+
+    /**
+     * Get all of the products for the Brand
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }
