@@ -27,6 +27,7 @@ return new class extends Migration
             $table->id();
             $table->string('image_path')->unique();
             $table->foreignId('product_id')
+                ->constrained('products')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->timestamps();
