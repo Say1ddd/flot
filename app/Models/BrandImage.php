@@ -12,6 +12,8 @@ class BrandImage extends Model
 
     protected $fillable = ['image_path', 'brand_id'];
 
+    public $timestamps = false;
+
     /**
      * Get the brand that owns the BrandImage
      *

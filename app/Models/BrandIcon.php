@@ -11,7 +11,9 @@ class BrandIcon extends Model
     use HasFactory;
 
     protected $fillable = ['icon_path', 'brand_id'];
-
+    
+    public $timestamps = false;
+    
     /**
      * Get the brand that owns the BrandIcon
      *
