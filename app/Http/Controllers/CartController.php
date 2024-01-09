@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\User;
+use Inertia\Inertia;
+use App\Policies\CartPolicy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -12,7 +16,16 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        if ($user->isAdmin()) {
+            $carts = Cart::all();
+        } else {
+            $carts = Cart::where('user_id', $user->id)->get();
+        }
+
+        return Inertia::render('Cart/Index', [
+            'cart' => $cart,
+        ]);
     }
 
     /**
@@ -20,7 +33,9 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Cart::class);
+        
+        return Inertia::render('Cart/Create');
     }
 
     /**
@@ -28,7 +43,14 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        if ($user->isAdmin()) {
+            // Store the cart
+        } else {
+            // Store the cart with the user_id
+        }
+
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -36,7 +58,16 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        //
+        $user = Auth::user();
+        if ($user->isAdmin() || $cart->user_id == $user->id) {
+            // Show the cart
+        } else {
+            // Unauthorized access
+        }
+
+        return Inertia::render('Carts/Show', [
+            'cart' => $cart,
+        ]);
     }
 
     /**
@@ -44,7 +75,16 @@ class CartController extends Controller
      */
     public function edit(Cart $cart)
     {
-        //
+        $user = Auth::user();
+        if ($user->isAdmin() || $cart->user_id == $user->id) {
+            // Show the edit form
+        } else {
+            // Unauthorized access
+        }
+
+        return Inertia::render('Carts/Edit', [
+            'cart' => $cart,
+        ]);
     }
 
     /**
@@ -52,7 +92,14 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
-        //
+        $user = Auth::user();
+        if ($user->isAdmin() || $cart->user_id == $user->id) {
+            // Update the cart
+        } else {
+            // Unauthorized access
+        }
+
+        return redirect()->route('carts.index');
     }
 
     /**
@@ -60,6 +107,13 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        //
+        $user = Auth::user();
+        if ($user->isAdmin() || $cart->user_id == $user->id) {
+            // Delete the cart
+        } else {
+            // Unauthorized access
+        }
+
+        return redirect()->route('carts.index');
     }
 }
