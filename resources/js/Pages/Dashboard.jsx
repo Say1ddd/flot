@@ -1,9 +1,12 @@
 import Carousel from '@/Components/Carousel';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import Navbar from '@/Components/Navbar';
 
-export default function Dashboard({ auth }) {
+export default function Dashboard() {
     return (
-        <Carousel />
+        <>
+            <Navbar />
+            <Carousel />
+        </>
     );
 }

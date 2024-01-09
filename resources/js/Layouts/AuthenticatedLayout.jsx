@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import ApplicationLogo from '@/Components/ApplicationLogo';
+import ApplicationLogo from '@/Components/AppLogo';
 import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
+import NavLink from '@/Components/Navbar';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import Carousel from '@/Components/new/Carousel';

@@ -1,0 +1,35 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    padding: 50px 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+.indicator {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.indicator-dot.active {
+    background: #333;
+}
